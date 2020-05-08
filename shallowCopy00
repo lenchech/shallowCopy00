@@ -1,0 +1,47 @@
+// Demo of shallow copy
+#include <cstdlib>
+#include <iostream>
+using namespace std;
+
+class myVec {
+	public:
+		myVec(int n){size = n; data = new int[size];};
+		myVec(){size = 10; data = new int[size];};
+		~myVec(){delete [] data;};
+		void print();	// Print data
+		int *data;
+		int size;
+};
+/*
+myVec a(100);
+myVec b = a;	// Copy constructor
+myVec c;
+c = a;	// Assignment operator
+*/
+
+
+void myVec::print(){
+	cout << "[";
+	for (int i = 0; i < size; i++)
+		cout << data[i] << " ";
+	cout << "]" << endl;
+}
+
+int main() {
+	// your code goes here
+	myVec a(5);
+	myVec b = a;
+	
+	cout << "Address of a.data: " << a.data << endl;
+	cout << "Address of b.data: " << b.data << endl;
+	a.data[0] = 2;
+	cout << "a.data[0] = 2 ==>" << endl;
+	cout << "a: "; a.print();
+	cout << "b: "; b.print();
+	b.data[1] = 4;
+	cout << "b.data[1] = 4 ==>" << endl;
+	cout << "a: "; a.print();
+	cout << "b: "; b.print();
+
+	return EXIT_SUCCESS;
+}
